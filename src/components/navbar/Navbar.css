@@ -1,0 +1,21 @@
+.navbar-main {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.home-btn {
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.dock {
+    height: 50px;
+    width: 50px;
+}
