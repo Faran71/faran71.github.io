@@ -5,7 +5,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-
+    column-gap: 10px;
 }
 
 .home-btn {
@@ -18,4 +18,11 @@
 .dock {
     height: 50px;
     width: 50px;
+    background-color: rgb(52, 52, 217);
+}
+
+.spiral-icon {
+    height: 40px;
+    width: 40px;
+    color: white;
 }

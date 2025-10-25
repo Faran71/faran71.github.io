@@ -7,7 +7,7 @@ const Profile = ({ setPage }) => {
             className="profile-main"
             // style={{
             //     backgroundImage: `url(${process.env.PUBLIC_URL + '/neon_bg.jpg'})`,
-            //     backgroundSize: 'fit',
+            //     backgroundSize: 'contain',
             //     backgroundPosition: 'center',
             // }}
             >
