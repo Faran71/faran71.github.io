@@ -1,104 +1,64 @@
 .bg {
-    position: fixed;
-    /* Makes it stay fixed behind content */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    /* Full viewport width */
-    height: 100vh;
-    /* Full viewport height */
-    z-index: -1;
-    /* Keeps it behind all other content */
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Makes image cover entire background */
-    object-position: center;
-    /* Centers the image */
-    filter: brightness(0.9);
-    /* Optional: adjust brightness for better readability */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.9);
 }
 
-.neon-right {
-  height: 80vh;
-  width: 20px;
-  background-color: #00bfff; /* A bright neon blue base */
-  position: fixed;
-  top: 10vh;
-  right: 5vw;
-  border-radius: 10px; /* optional: smooth the edges */
-  
-  /* Neon glow effect */
-  box-shadow:
-    0 0 10px #00bfff,
-    0 0 20px #00bfff,
-    0 0 40px #00bfff,
-    0 0 80px #00bfff,
-    0 0 120px #00bfff;
-  
-  /* Optional: make it pulse softly */
-  animation: neonPulse 2s infinite alternate;
-}
-
-@keyframes neonPulse {
-  from {
-    box-shadow:
-      0 0 10px #00bfff,
-      0 0 20px #00bfff,
-      0 0 40px #00bfff,
-      0 0 80px #00bfff,
-      0 0 120px #00bfff;
-  }
-  to {
-    box-shadow:
-      0 0 5px #00bfff,
-      0 0 10px #00bfff,
-      0 0 20px #00bfff,
-      0 0 40px #00bfff,
-      0 0 60px #00bfff;
-  }
-}
-
+/* Reusable neon style using a CSS variable */
+.neon-right,
 .neon-left {
   height: 80vh;
   width: 20px;
-  background-color: #00ff88; /* A bright neon green base */
+  background-color: var(--neon-color);
+  border-radius: 10px;
   position: fixed;
   top: 10vh;
-  left: 5vw;
-  border-radius: 10px; /* optional: smooth the edges */
-  
-  /* Neon glow effect */
   box-shadow:
-    0 0 10px #00ff88,
-    0 0 20px #00ff88,
-    0 0 40px #00ff88,
-    0 0 80px #00ff88,
-    0 0 120px #00ff88;
-  
-  /* Optional: make it pulse softly */
-  animation: neonPulseGreen 2s infinite alternate;
+    0 0 10px var(--neon-color),
+    0 0 20px var(--neon-color),
+    0 0 40px var(--neon-color),
+    0 0 80px var(--neon-color),
+    0 0 120px var(--neon-color);
+  animation: neonPulse 0.5s infinite alternate;
 }
 
-@keyframes neonPulseGreen {
+/* Side positioning */
+.neon-right {
+  right: 5vw;
+}
+
+.neon-left {
+  left: 5vw;
+}
+
+/* Shared animation using variable color */
+@keyframes neonPulse {
   from {
     box-shadow:
-      0 0 10px #00ff88,
-      0 0 20px #00ff88,
-      0 0 40px #00ff88,
-      0 0 80px #00ff88,
-      0 0 120px #00ff88;
+      0 0 10px var(--neon-color),
+      0 0 20px var(--neon-color),
+      0 0 40px var(--neon-color),
+      0 0 80px var(--neon-color),
+      0 0 120px var(--neon-color);
   }
   to {
     box-shadow:
-      0 0 5px #00ff88,
-      0 0 10px #00ff88,
-      0 0 20px #00ff88,
-      0 0 40px #00ff88,
-      0 0 60px #00ff88;
+      0 0 5px var(--neon-color),
+      0 0 10px var(--neon-color),
+      0 0 20px var(--neon-color),
+      0 0 40px var(--neon-color),
+      0 0 60px var(--neon-color);
   }
 }

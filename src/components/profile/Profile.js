@@ -1,18 +1,13 @@
 import "./Profile.css"
 
-const Profile = ({ setPage }) => {
+const Profile = () => {
 
     return (
         <div
             className="profile-main"
-            // style={{
-            //     backgroundImage: `url(${process.env.PUBLIC_URL + '/neon_bg.jpg'})`,
-            //     backgroundSize: 'contain',
-            //     backgroundPosition: 'center',
-            // }}
             >
             Name is Faran
-            <button onClick={() => setPage(2)}>Click me</button>
+            <button >Click me</button>
         </div>
     )
 
