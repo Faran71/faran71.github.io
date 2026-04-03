@@ -1,0 +1,49 @@
+.main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10%;
+}
+
+.main-top {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.first-section {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image {
+  width: 400px;   /* change to whatever size you want */
+  height: 400px;
+  object-fit: cover; /* prevents stretching */
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+}
+
+.skills-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.skill-icon {
+  width: 80px;
+  height: 80px;
+}
