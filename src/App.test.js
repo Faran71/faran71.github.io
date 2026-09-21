@@ -82,8 +82,6 @@ test('Profile page has no education or certifications', () => {
   expect(screen.queryByText(/TOGAF/i)).not.toBeInTheDocument();
   expect(screen.queryByText(/AWS Certified Cloud Practitioner/i)).not.toBeInTheDocument();
   expect(screen.queryByText(/MSci \/ BA Astrophysics/i)).not.toBeInTheDocument();
-  expect(screen.queryByText(/Upper Second-Class/i)).not.toBeInTheDocument();
-  expect(screen.queryByText(/Newham Collegiate/i)).not.toBeInTheDocument();
 });
 
 test('Profile page still carries the things that matter', () => {

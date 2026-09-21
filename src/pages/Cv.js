@@ -191,9 +191,6 @@ export default function Cv({ onNavigate, theme }) {
               <li className="cv-edu__item" key={e.school}>
                 <h3>{e.qualification}</h3>
                 <p className="cv-edu__school">{e.school}</p>
-                <p className="cv-edu__meta">
-                  {e.period} <span className="cv-sep">·</span> {e.grade}
-                </p>
                 <p className="cv-edu__detail">{e.detail}</p>
               </li>
             ))}

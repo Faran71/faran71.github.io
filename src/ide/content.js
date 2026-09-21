@@ -319,18 +319,10 @@ export const education: Education[] = [
     school: 'University of Cambridge',
     qualification: 'MSci / BA Astrophysics',
     period: 'Sep 2019 - Jun 2023',
-    grade: 'Upper Second-Class',
     detail:
       'Computational astrophysics research in Python and C++ - simulating ' +
       'particle dynamics and collision behaviour in systems such as the ' +
       'Beta Pictoris debris disk.',
-  },
-  {
-    school: 'Newham Collegiate Sixth Form Centre',
-    qualification: 'A Levels',
-    period: 'Sep 2017 - Jul 2019',
-    grade: 'Mathematics (A*), Further Mathematics (A*), Physics (A*), Chemistry (A*)',
-    detail: 'AEA Mathematics: Distinction',
   },
 ];
 `;
