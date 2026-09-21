@@ -15,7 +15,13 @@
   overflow-x: hidden;
 }
 
-.page a {
+/*
+ * Anchor colour follows the surrounding text by default. Components that set
+ * their own colour (buttons, cards-looking-like-links) are excluded — a blanket
+ * `color: inherit` has the same specificity as a component rule and would
+ * silently win on source order.
+ */
+.page a:not(.page-cta):not(.contact-card):not(.page-header__brand) {
   color: inherit;
 }
 
@@ -29,7 +35,7 @@
   align-items: center;
   gap: 18px;
   padding: 12px var(--page-pad);
-  background: rgba(10, 12, 18, 0.86);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -40,6 +46,12 @@
   gap: 10px;
   text-decoration: none;
   flex: 0 0 auto;
+  /* Explicit, rather than relying on an inherited anchor colour: unstyled
+     anchors otherwise fall back to the user-agent link colour (bright blue). */
+  color: var(--text-bright);
+}
+.page-header__brand:hover {
+  color: var(--accent);
 }
 
 .page-header__mark {
@@ -49,7 +61,7 @@
   height: 30px;
   border-radius: 8px;
   background: var(--accent);
-  color: #06120f;
+  color: var(--accent-ink);
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 700;
@@ -121,15 +133,17 @@
 }
 
 .page-cta--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #06120f;
+  /* Filled buttons always use the strong accent + ink, in both themes:
+     gold background with a dark foreground reads at 7.91 either way. */
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--accent-ink);
   font-weight: 600;
 }
 .page-cta--primary:hover {
-  background: #5fdcc2;
-  border-color: #5fdcc2;
-  color: #06120f;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--accent-ink);
 }
 
 .page-cta--ghost {
@@ -151,10 +165,10 @@
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
-  border-bottom: 1px dashed rgba(78, 201, 176, 0.5);
+  border-bottom: 1px dashed var(--tint-line);
 }
 .page-linkish:hover {
-  color: #6fe3ca;
+  color: var(--accent-hover);
 }
 
 /* ---- availability pill ---- */
@@ -166,8 +180,8 @@
   margin: 0 0 18px;
   padding: 5px 12px;
   border-radius: 100px;
-  background: rgba(78, 201, 176, 0.09);
-  border: 1px solid rgba(78, 201, 176, 0.28);
+  background: var(--tint-weak);
+  border: 1px solid var(--tint-line);
   color: var(--accent);
   font-size: 12.5px;
   font-weight: 500;
@@ -366,8 +380,8 @@
   flex: 0 0 auto;
   padding: 3px 9px;
   border-radius: 100px;
-  background: rgba(78, 201, 176, 0.11);
-  border: 1px solid rgba(78, 201, 176, 0.3);
+  background: var(--tint);
+  border: 1px solid var(--tint-line);
   color: var(--accent);
   font-size: 10.5px;
   font-weight: 600;
@@ -376,8 +390,8 @@
   white-space: nowrap;
 }
 .work-card__badge--wip {
-  background: rgba(220, 220, 170, 0.1);
-  border-color: rgba(220, 220, 170, 0.3);
+  background: var(--tint-weak);
+  border-color: var(--tint-line);
   color: var(--warn);
 }
 

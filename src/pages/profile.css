@@ -73,7 +73,7 @@
   place-items: end center;
   border-radius: 16px;
   border: 1px solid var(--line-2);
-  background: linear-gradient(160deg, rgba(78, 201, 176, 0.13), transparent 65%);
+  background: linear-gradient(160deg, var(--tint), transparent 65%);
   overflow: hidden;
 }
 .pf-hero__photo img {

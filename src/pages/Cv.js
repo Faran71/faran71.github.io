@@ -19,7 +19,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
  * This is the page for a hiring process: roles with dates, education and
  * certifications. The Profile page carries the friendlier, personal version.
  */
-export default function Cv({ onNavigate }) {
+export default function Cv({ onNavigate, theme }) {
   const nav = [
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
@@ -35,6 +35,7 @@ export default function Cv({ onNavigate }) {
   return (
     <PageShell
       current="cv"
+      theme={theme}
       nav={nav}
       onNavigate={onNavigate}
       contactLead="I answer everything. If you are hiring, tell me what the problem is and I will tell you honestly whether I am the right person for it."

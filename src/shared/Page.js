@@ -12,6 +12,7 @@ import {
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { IDENTITY } from '../ide/content';
 import { getSkillIcon } from '../ide/skills';
+import ThemeToggle from '../theme/ThemeToggle';
 import './page.css';
 
 /** Where the downloadable CV lives — a file in public/. */
@@ -39,7 +40,7 @@ export const PAGE_LABELS = {
    Header
    ========================================================================== */
 
-export function PageHeader({ nav = [], onNavigate, current = 'profile' }) {
+export function PageHeader({ nav = [], onNavigate, current = 'profile', theme }) {
   return (
     <header className="page-header">
       <a
@@ -63,6 +64,14 @@ export function PageHeader({ nav = [], onNavigate, current = 'profile' }) {
       </nav>
 
       <div className="page-header__actions">
+        {theme && (
+          <ThemeToggle
+            pref={theme.pref}
+            onChange={theme.set}
+            systemTheme={theme.systemTheme}
+          />
+        )}
+
         {/* The other reading of this site, one click away. */}
         {current !== 'profile' && (
           <button
@@ -339,6 +348,7 @@ export function PageShell({
   children,
   contactLead,
   footer = true,
+  theme,
 }) {
   // Each page is a fresh document as far as the reader is concerned.
   useEffect(() => {
@@ -347,7 +357,7 @@ export function PageShell({
 
   return (
     <div className="page">
-      <PageHeader nav={nav} onNavigate={onNavigate} current={current} />
+      <PageHeader nav={nav} onNavigate={onNavigate} current={current} theme={theme} />
       <main id="top">{children}</main>
       {contactLead !== undefined && <ContactSection lead={contactLead} />}
       {footer && <PageFooter onNavigate={onNavigate} current={current} />}

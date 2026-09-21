@@ -10,13 +10,14 @@ import Stack from './Stack';
 import Terminal from './Terminal';
 import CommandPalette from './CommandPalette';
 import { useMediaQuery } from './hooks';
+import ThemeToggle from '../theme/ThemeToggle';
 
 import { VscFiles, VscSearch, VscSourceControl, VscSettingsGear } from 'react-icons/vsc';
 import { FiTerminal, FiCommand, FiCode, FiArrowLeft } from 'react-icons/fi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 
-export default function Ide({ onShowProfile }) {
+export default function Ide({ onShowProfile, theme }) {
   const [activeId, setActiveId] = useState('profile');
   const [openTabs, setOpenTabs] = useState(['profile']);
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -104,6 +105,14 @@ export default function Ide({ onShowProfile }) {
         <span className="titlebar__spacer" />
 
         <span className="titlebar__right">
+          {theme && (
+            <ThemeToggle
+              pref={theme.pref}
+              onChange={theme.set}
+              systemTheme={theme.systemTheme}
+            />
+          )}
+
           {onShowProfile && (
             <button
               type="button"

@@ -47,6 +47,49 @@ remembered your last view, which made the home page depend on browsing history:
 once someone opened the CV, every later visit to the bare domain served them the
 CV instead of the Profile. That is a regression test now.
 
+
+## Colour and themes
+
+Four palette colours drive everything:
+
+| Token name | Hex | Role |
+| --- | --- | --- |
+| sand | `#bbab9b` | Warm neutral — body text on dark |
+| brown | `#8b6f47` | Mid brown — panels, borders, link text on light |
+| gold | `#d4ac6e` | Highlight — accents, primary button fill |
+| dark | `#4f3222` | Deep brown — borders, dark surfaces, text on light |
+
+Everything else is a tonal variation of those four. There are **two themes**,
+and all colour lives in one file: [`src/theme/theme.css`](src/theme/theme.css).
+
+### How the theme is picked
+
+1. An explicit choice — `:root[data-theme="light" | "dark"]`, set on `<html>`
+2. Otherwise the **browser / OS preference**, via `@media (prefers-color-scheme)`
+   — scoped to `:root:not([data-theme])` so it can never override (1)
+3. Otherwise dark
+
+The toggle sits in the header of every view and has three options: **System**
+(the default), **Light** and **Dark**. `System` stores the preference as the
+*absence* of an attribute, so the media query keeps following the OS live.
+
+A tiny inline script in `public/index.html` applies a saved `light`/`dark`
+choice during `<head>` parsing, before anything paints — so pinning a theme
+never flashes the other one.
+
+### Two rules that keep the palette honest
+
+- **Gold is a fill, not text.** It reads at 1.97:1 on the light background.
+  So `--accent` is the *text/link* colour (brown on light, gold on dark) and
+  `--accent-strong` is the *filled-button* background (gold on both, always
+  paired with `--accent-ink`). Every theme token pair in the file was checked
+  for WCAG AA; the worst case is 4.71:1.
+- **Never hardcode a colour in a component.** That is how a theme breaks. Use
+  `--tint` / `--tint-weak` / `--tint-line` for translucent accent washes, and
+  `--grid`, `--scrim`, `--header-bg`, `--shadow` for page furniture.
+
+Adding a theme means adding one token block; no component changes.
+
 ## Running it
 
 ```bash
@@ -121,11 +164,14 @@ src/
   App.js                view switcher: profile | cv | ide
   index.css             base reset
   App.css               (kept, intentionally near-empty)
+  theme/
+    theme.css           ALL colour: both token sets + the toggle styles
+    ThemeToggle.js      useTheme + the System / Light / Dark control
   shared/
     Page.js             PageShell, PageHeader, PageFooter, SectionHead,
                         Availability, CvActions, SkillBars, WorkCard,
                         ContactSection
-    page.css            tokens + everything the two reading views share
+    page.css            everything the two reading views share
   pages/
     Profile.js          the main landing page
     profile.css         profile-only styles
@@ -147,8 +193,8 @@ src/
     ide.css             the editor theme
 ```
 
-All three views sit on the same CSS custom properties, so they share a palette
-without sharing a layout. Profile and CV are built from the same shared
+All three views sit on the same CSS custom properties (`src/theme/theme.css`),
+so they share a palette and both themes without sharing a layout. Profile and CV are built from the same shared
 components in `src/shared/Page.js` — that is why changing, say, the contact
 cards updates both at once.
 
@@ -197,7 +243,7 @@ render it in `src/shared/Page.js`.
 
 ## Testing
 
-`src/App.test.js` (18 tests) covers what breaks silently:
+`src/App.test.js` (22 tests) covers what breaks silently:
 
 - **A plain visit always lands on Profile**, even with stale view state in
   `localStorage` — the regression guard
@@ -215,6 +261,9 @@ render it in `src/shared/Page.js`.
 - The Code view lists all twenty technologies
 - The terminal executes a real command and prints output; unknown commands fail
   loudly; `open` switches the active tab
+- The theme toggle offers system/light/dark, sets `data-theme` correctly,
+  removes it for `system`, and persists the choice
+- The theme toggle is reachable in all three views
 
 `src/setupTests.js` stubs `matchMedia` and `IntersectionObserver`, which jsdom
 does not implement.

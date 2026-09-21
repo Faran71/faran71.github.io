@@ -11,6 +11,8 @@ const goToIde = () =>
 beforeEach(() => {
   window.location.hash = '';
   window.localStorage.clear();
+  // Tests must not inherit a theme attribute from a previous case.
+  document.documentElement.removeAttribute('data-theme');
 });
 
 /* ==========================================================================
@@ -288,4 +290,69 @@ test('`open` switches the active editor tab', () => {
     'aria-selected',
     'true'
   );
+});
+
+/* ==========================================================================
+   Theme
+   ========================================================================== */
+
+test('the toggle offers system, light and dark', () => {
+  render(<App />);
+
+  const group = screen.getByRole('group', { name: /colour theme/i });
+  const labels = within(group)
+    .getAllByRole('button')
+    .map((b) => b.textContent.trim());
+
+  expect(labels).toHaveLength(3);
+  expect(labels.join(' ')).toMatch(/system/i);
+  expect(labels.join(' ')).toMatch(/light/i);
+  expect(labels.join(' ')).toMatch(/dark/i);
+});
+
+test('choosing light and dark sets data-theme on <html>', () => {
+  render(<App />);
+
+  const group = screen.getByRole('group', { name: /colour theme/i });
+  const [systemBtn, lightBtn, darkBtn] = within(group).getAllByRole('button');
+
+  fireEvent.click(lightBtn);
+  expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+  expect(lightBtn).toHaveAttribute('aria-pressed', 'true');
+
+  fireEvent.click(darkBtn);
+  expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+  expect(darkBtn).toHaveAttribute('aria-pressed', 'true');
+
+  // `system` removes the attribute so the CSS media query takes over again.
+  fireEvent.click(systemBtn);
+  expect(document.documentElement).not.toHaveAttribute('data-theme');
+  expect(systemBtn).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('the theme choice is persisted, and a stored choice is honoured on load', () => {
+  render(<App />);
+
+  const group = screen.getByRole('group', { name: /colour theme/i });
+  const [, lightBtn] = within(group).getAllByRole('button');
+  fireEvent.click(lightBtn);
+
+  expect(window.localStorage.getItem('theme')).toBe('light');
+
+  // A fresh mount should pick the stored preference straight up.
+  document.documentElement.removeAttribute('data-theme');
+  const { unmount } = render(<App />);
+  unmount();
+  expect(window.localStorage.getItem('theme')).toBe('light');
+});
+
+test('the theme toggle is available in every view', () => {
+  render(<App />);
+  expect(screen.getByRole('group', { name: /colour theme/i })).toBeInTheDocument();
+
+  goTo('CV');
+  expect(screen.getByRole('group', { name: /colour theme/i })).toBeInTheDocument();
+
+  goToIde();
+  expect(screen.getByRole('group', { name: /colour theme/i })).toBeInTheDocument();
 });

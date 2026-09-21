@@ -10,7 +10,7 @@ import {
 } from '../shared/Page';
 import './profile.css';
 
-import { FiMail, FiArrowDown, FiCode, FiFileText } from 'react-icons/fi';
+import { FiMail, FiArrowDown, FiFileText } from 'react-icons/fi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 /**
@@ -50,7 +50,7 @@ const WHAT_I_DO = [
   },
 ];
 
-export default function Profile({ onNavigate }) {
+export default function Profile({ onNavigate, theme }) {
   const nav = [
     { label: 'About', href: '#about' },
     { label: 'What I do', href: '#work' },
@@ -64,6 +64,7 @@ export default function Profile({ onNavigate }) {
   return (
     <PageShell
       current="profile"
+      theme={theme}
       nav={nav}
       onNavigate={onNavigate}
       contactLead="I answer everything. If you are hiring, tell me what the problem is and I will tell you honestly whether I am the right person for it."

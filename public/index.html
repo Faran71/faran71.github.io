@@ -10,8 +10,26 @@
       content="Full Stack Developer in London. TypeScript, JavaScript, Python, Java and C++ with React, Angular, Svelte, NestJS, FastAPI, Express and Ruby on Rails. MSci Astrophysics, University of Cambridge."
     />
     <meta name="author" content="Muhammad Faran Sarwar" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0a0c12" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#2a1a12" />
+
+    <!--
+      Apply the saved colour theme before first paint, so an explicit light or
+      dark choice never flashes the other theme. No data-theme means "follow the
+      browser", which the CSS media query in src/theme/theme.css handles.
+    -->
+    <script>
+      (function () {
+        try {
+          var pref = localStorage.getItem('theme');
+          if (pref === 'light' || pref === 'dark') {
+            document.documentElement.setAttribute('data-theme', pref);
+          }
+        } catch (e) {
+          /* storage blocked — fall through to the OS preference */
+        }
+      })();
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

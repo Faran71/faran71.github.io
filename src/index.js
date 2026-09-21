@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+/* Theme tokens must load before any component CSS that consumes them. */
+import './theme/theme.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

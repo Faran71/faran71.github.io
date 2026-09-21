@@ -1,46 +1,7 @@
 /* ==========================================================================
-   faran71 — IDE theme
-   Colour tokens first, everything else references them.
-   Palette: near-black blue with a syntax rainbow. No purple gradients.
+   IDE theme — editor chrome only. All colour lives in src/theme/theme.css.
    ========================================================================== */
 
-:root {
-  --bg: #0a0c12;
-  --bg-2: #0e111a;
-  --panel: #11141d;
-  --panel-2: #161a25;
-  --line: #1e2333;
-  --line-2: #2a3042;
-
-  --text: #c8d0e0;
-  --text-bright: #eef2fa;
-  --muted: #6b7488;
-  --faint: #454c5e;
-
-  --accent: #4ec9b0;
-  --accent-2: #569cd6;
-  --warn: #dcdcaa;
-  --danger: #f07178;
-
-  /* Syntax */
-  --syn-keyword: #c586c0;
-  --syn-string: #98c379;
-  --syn-number: #d19a66;
-  --syn-type: #4ec9b0;
-  --syn-function: #61afef;
-  /* Comment tokens carry real content, so they stay readable. */
-  --syn-comment: #7c88a3;
-  --syn-property: #9cdcfe;
-  --syn-tag: #e06c75;
-  --syn-punct: #7d879c;
-
-  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
-    Consolas, 'Liberation Mono', monospace;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  --radius: 10px;
-  --shadow: 0 24px 70px -20px rgba(0, 0, 0, 0.85);
-}
 
 * {
   box-sizing: border-box;
@@ -57,16 +18,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  /* Faint grid — reads as "technical surface", not decoration. */
-  background-image:
-    linear-gradient(rgba(78, 201, 176, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(78, 201, 176, 0.028) 1px, transparent 1px);
-  background-size: 46px 46px;
-}
-
 ::selection {
-  background: rgba(78, 201, 176, 0.28);
+  background: var(--tint-line);
   color: var(--text-bright);
 }
 
@@ -88,7 +41,7 @@ body {
   border: 2px solid var(--bg);
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: #384054;
+  background: var(--scroll-thumb-hover);
 }
 
 button {
@@ -131,13 +84,13 @@ button {
   background: var(--line-2);
 }
 .dot--r {
-  background: #ff5f57;
+  background: var(--dot-r);
 }
 .dot--y {
-  background: #febc2e;
+  background: var(--dot-y);
 }
 .dot--g {
-  background: #28c840;
+  background: var(--dot-g);
 }
 
 .titlebar__title {
@@ -506,7 +459,7 @@ button {
   right: -40px;
   width: min(360px, 42%);
   aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(78, 201, 176, 0.13), transparent 68%);
+  background: radial-gradient(circle, var(--tint), transparent 68%);
   pointer-events: none;
 }
 
@@ -523,7 +476,7 @@ button {
   width: 148px;
   height: 148px;
   border-radius: 14px;
-  background: linear-gradient(150deg, rgba(78, 201, 176, 0.12), transparent 70%);
+  background: linear-gradient(150deg, var(--tint), transparent 70%);
   border: 1px solid var(--line-2);
   display: grid;
   place-items: end center;
@@ -630,15 +583,16 @@ button {
   transform: translateY(-1px);
 }
 .btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #06120f;
+  /* Matches .page-cta--primary: strong fill + ink in both themes. */
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--accent-ink);
   font-weight: 600;
 }
 .btn--primary:hover {
-  background: #5fdcc2;
-  border-color: #5fdcc2;
-  color: #06120f;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--accent-ink);
 }
 
 .hero__stats {
@@ -960,7 +914,7 @@ button {
 .palette__scrim {
   position: fixed;
   inset: 0;
-  background: rgba(5, 7, 11, 0.72);
+  background: var(--scrim);
   backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
@@ -1144,6 +1098,47 @@ button {
   }
   .titlebar__title {
     display: none;
+  }
+
+  /* The titlebar carries a lot: theme toggle, back button, three social links
+     and the ⌘K hint. At phone widths they overflow the viewport, so shed the
+     social links (they are in the Profile view header) and compress the rest. */
+  .titlebar {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .titlebar__right {
+    gap: 2px;
+  }
+  .titlebar__right .icon-link {
+    display: none;
+  }
+  .kbd-btn--back {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  .theme-toggle {
+    padding: 2px;
+  }
+  .theme-toggle__btn {
+    width: 24px;
+    height: 22px;
+    font-size: 12px;
+  }
+}
+
+/* Very narrow: the ⌘K badge is a keyboard affordance and phones have none. */
+@media (max-width: 430px) {
+  .kbd-btn:not(.kbd-btn--back) {
+    display: none;
+  }
+  .kbd-btn--back {
+    /* Icon only — "Back to profile" would not fit. */
+    font-size: 0;
+    padding: 0 7px;
+  }
+  .kbd-btn--back svg {
+    font-size: 14px;
   }
 }
 

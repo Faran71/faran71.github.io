@@ -4,6 +4,7 @@ import './App.css';
 import Profile from './pages/Profile';
 import Cv from './pages/Cv';
 import Ide from './ide/Ide';
+import { useTheme } from './theme/ThemeToggle';
 
 /**
  * Three views of the same person.
@@ -41,6 +42,8 @@ function initialMode() {
 
 export default function App() {
   const [mode, setMode] = useState(initialMode);
+  // Theme is owned here and passed down, so the toggle stays in sync across views.
+  const theme = useTheme();
 
   // Keep the hash in step with the current view so it stays shareable.
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function App() {
     if (VALID.includes(next)) setMode(next);
   }, []);
 
-  if (mode === 'ide') return <Ide onShowProfile={() => navigate('profile')} />;
-  if (mode === 'cv') return <Cv onNavigate={navigate} />;
-  return <Profile onNavigate={navigate} />;
+  if (mode === 'ide') return <Ide onShowProfile={() => navigate('profile')} theme={theme} />;
+  if (mode === 'cv') return <Cv onNavigate={navigate} theme={theme} />;
+  return <Profile onNavigate={navigate} theme={theme} />;
 }

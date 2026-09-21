@@ -1,0 +1,234 @@
+/* ==========================================================================
+   THEME — single source of truth for colour.
+
+   Palette (the four brand colours everything is derived from):
+
+     sand   #bbab9b   warm neutral
+     brown  #8b6f47   mid brown
+     gold   #d4ac6e   highlight / primary accent
+     dark   #4f3222   deep brown
+
+   Dark is the base definition; light overrides the same token names, so every
+   component is written once and works in both themes.
+
+   How the theme is chosen (see src/theme/ThemeToggle.js):
+     1. `:root[data-theme="light"|"dark"]` — an explicit choice, set on <html>
+     2. `@media (prefers-color-scheme: light)` — the browser / OS preference,
+        applied only via `:root:not([data-theme])` so it never overrides (1)
+     3. otherwise dark
+
+   Two rules to keep this honest:
+     - Gold (#d4ac6e) is a FILL, not text. It fails contrast as text on light
+       surfaces (1.97). So: `--accent` is for text and links (brown in light,
+       gold in dark), and `--accent-strong` is the filled-button background
+       (gold in both, always paired with `--accent-ink`).
+     - Never hardcode a colour in a component — that is how a theme breaks.
+       `--tint` is for translucent accent washes; it follows the theme.
+   ========================================================================== */
+
+:root {
+  /* ---- dark theme (base) ---- */
+  color-scheme: dark;
+
+  --bg: #2a1a12;
+  --bg-2: #23150f;
+  --panel: #332014;
+  --panel-2: #3a2519;
+  --line: #4f3222;
+  --line-2: #63452f;
+
+  --text: #bbab9b;
+  --text-bright: #f2e7d8;
+  --muted: #9d8b78;
+  --faint: #7c6857;
+
+  /* Interactive / accent */
+  --accent: #d4ac6e;
+  --accent-strong: #d4ac6e;
+  --accent-ink: #2a1a12;
+  --accent-hover: #e0bd85;
+  --tint: rgba(212, 172, 110, 0.14);
+  --tint-weak: rgba(212, 172, 110, 0.07);
+  --tint-line: rgba(212, 172, 110, 0.32);
+
+  --warn: #dcc9a0;
+  --danger: #e2917f;
+
+  /* Page furniture */
+  --grid: rgba(212, 172, 110, 0.035);
+  --selection: rgba(212, 172, 110, 0.3);
+  --scroll-thumb: #63452f;
+  --scroll-thumb-hover: #7c5940;
+  --scrim: rgba(20, 12, 8, 0.72);
+  --header-bg: rgba(35, 21, 15, 0.86);
+  --shadow: 0 24px 70px -20px rgba(0, 0, 0, 0.7);
+  --card-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+
+  /* Syntax */
+  --syn-keyword: #c98fa8;
+  --syn-string: #9dae7f;
+  --syn-number: #e0a878;
+  --syn-type: #7fb3a8;
+  --syn-function: #8fb0c9;
+  --syn-comment: #9d8b78;
+  --syn-property: #a8c4c9;
+  --syn-tag: #d98f7d;
+  --syn-punct: #a08b76;
+
+  /* Traffic lights are OS chrome — they stay their real colours. */
+  --dot-r: #ff5f57;
+  --dot-y: #febc2e;
+  --dot-g: #28c840;
+
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
+    Consolas, 'Liberation Mono', monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --radius: 10px;
+}
+
+/* ---- light theme, as an explicit choice ---- */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #faf6f0;
+  --bg-2: #f4eee4;
+  --panel: #f2ece1;
+  --panel-2: #eae2d4;
+  --line: #ddcfb8;
+  --line-2: #c9b697;
+
+  --text: #3c2719;
+  --text-bright: #241509;
+  --muted: #6b5540;
+  --faint: #8d7963;
+
+  /* Brown reads on light surfaces; gold does not. */
+  --accent: #7a6039;
+  --accent-strong: #d4ac6e;
+  --accent-ink: #2a1a12;
+  --accent-hover: #e0bd85;
+  --tint: rgba(139, 111, 71, 0.13);
+  --tint-weak: rgba(139, 111, 71, 0.06);
+  --tint-line: rgba(139, 111, 71, 0.32);
+
+  --warn: #8a6a1f;
+  --danger: #a8452f;
+
+  --grid: rgba(139, 111, 71, 0.05);
+  --selection: rgba(212, 172, 110, 0.42);
+  --scroll-thumb: #c9b697;
+  --scroll-thumb-hover: #b09a78;
+  --scrim: rgba(60, 39, 25, 0.42);
+  --header-bg: rgba(250, 246, 240, 0.88);
+  --shadow: 0 24px 70px -24px rgba(79, 50, 34, 0.28);
+  --card-shadow: 0 10px 30px -16px rgba(79, 50, 34, 0.22);
+
+  --syn-keyword: #8a3d5c;
+  --syn-string: #6b6423;
+  --syn-number: #9c5a1c;
+  --syn-type: #1f6157;
+  --syn-function: #2f5570;
+  --syn-comment: #6b5540;
+  --syn-property: #1f5c66;
+  --syn-tag: #9c3b28;
+  --syn-punct: #7a6553;
+}
+
+/* ---- light theme, following the browser/OS preference ---- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+
+    --bg: #faf6f0;
+    --bg-2: #f4eee4;
+    --panel: #f2ece1;
+    --panel-2: #eae2d4;
+    --line: #ddcfb8;
+    --line-2: #c9b697;
+
+    --text: #3c2719;
+    --text-bright: #241509;
+    --muted: #6b5540;
+    --faint: #8d7963;
+
+    --accent: #7a6039;
+    --accent-strong: #d4ac6e;
+    --accent-ink: #2a1a12;
+    --accent-hover: #e0bd85;
+    --tint: rgba(139, 111, 71, 0.13);
+    --tint-weak: rgba(139, 111, 71, 0.06);
+    --tint-line: rgba(139, 111, 71, 0.32);
+
+    --warn: #8a6a1f;
+    --danger: #a8452f;
+
+    --grid: rgba(139, 111, 71, 0.05);
+    --selection: rgba(212, 172, 110, 0.42);
+    --scroll-thumb: #c9b697;
+    --scroll-thumb-hover: #b09a78;
+    --scrim: rgba(60, 39, 25, 0.42);
+    --header-bg: rgba(250, 246, 240, 0.88);
+    --shadow: 0 24px 70px -24px rgba(79, 50, 34, 0.28);
+    --card-shadow: 0 10px 30px -16px rgba(79, 50, 34, 0.22);
+
+    --syn-keyword: #8a3d5c;
+    --syn-string: #6b6423;
+    --syn-number: #9c5a1c;
+    --syn-type: #1f6157;
+    --syn-function: #2f5570;
+    --syn-comment: #6b5540;
+    --syn-property: #1f5c66;
+    --syn-tag: #9c3b28;
+    --syn-punct: #7a6553;
+  }
+}
+
+/* ==========================================================================
+   Theme toggle
+   ========================================================================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.theme-toggle__btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.theme-toggle__btn:hover {
+  color: var(--text-bright);
+  background: var(--panel-2);
+}
+.theme-toggle__btn[aria-pressed='true'] {
+  color: var(--accent-ink);
+  background: var(--accent-strong);
+}
+
+.theme-toggle__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
