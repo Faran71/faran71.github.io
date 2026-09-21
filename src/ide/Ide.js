@@ -12,11 +12,11 @@ import CommandPalette from './CommandPalette';
 import { useMediaQuery } from './hooks';
 
 import { VscFiles, VscSearch, VscSourceControl, VscSettingsGear } from 'react-icons/vsc';
-import { FiTerminal, FiCommand, FiCode } from 'react-icons/fi';
+import { FiTerminal, FiCommand, FiCode, FiArrowLeft } from 'react-icons/fi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 
-export default function Ide() {
+export default function Ide({ onShowProfile }) {
   const [activeId, setActiveId] = useState('profile');
   const [openTabs, setOpenTabs] = useState(['profile']);
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -104,6 +104,18 @@ export default function Ide() {
         <span className="titlebar__spacer" />
 
         <span className="titlebar__right">
+          {onShowProfile && (
+            <button
+              type="button"
+              className="kbd-btn kbd-btn--back"
+              onClick={onShowProfile}
+              title="Back to the standard profile page"
+            >
+              <FiArrowLeft aria-hidden="true" />
+              Back to profile
+            </button>
+          )}
+
           <a
             className="icon-link"
             href={IDENTITY.links[0]?.url}

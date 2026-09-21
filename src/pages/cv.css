@@ -1,0 +1,321 @@
+/* ==========================================================================
+   CV page
+   Only what is specific to the CV. Everything shared with the Profile page
+   (header, buttons, sections, contact, proficiency bars, work cards) lives in
+   src/shared/page.css.
+   ========================================================================== */
+
+.cv-hero {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 56px var(--page-pad) 40px;
+}
+
+.cv-hero__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 44px;
+}
+
+.cv-hero__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cv-hero__name {
+  margin: 0 0 6px;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+}
+
+.cv-hero__role {
+  margin: 0 0 18px;
+  font-family: var(--mono);
+  font-size: clamp(15px, 2vw, 19px);
+  color: var(--accent);
+}
+
+.cv-hero__summary {
+  margin: 0 0 24px;
+  max-width: 62ch;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* Contact facts, presented as a definition-style list. */
+.cv-hero__facts {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cv-hero__facts li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--text);
+}
+.cv-hero__factlabel {
+  flex: 0 0 76px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+}
+.cv-hero__facts a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  overflow-wrap: anywhere;
+}
+.cv-hero__facts a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.cv-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cv-hero__photo {
+  flex: 0 0 auto;
+  width: 260px;
+  height: 300px;
+  display: grid;
+  place-items: end center;
+  border-radius: 16px;
+  border: 1px solid var(--line-2);
+  background: linear-gradient(160deg, rgba(78, 201, 176, 0.13), transparent 65%);
+  overflow: hidden;
+}
+.cv-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* ---- stats strip ---- */
+
+.cv-stats {
+  list-style: none;
+  margin: 46px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+.cv-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.cv-stats__value {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.cv-stats__label {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* ---- experience timeline ---- */
+
+.cv-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.cv-role {
+  position: relative;
+  padding-left: 22px;
+  border-left: 2px solid var(--line);
+}
+.cv-role::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.cv-role__title {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.cv-role__meta {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.cv-role__meta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.cv-role__period {
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.cv-sep {
+  margin: 0 8px;
+  color: var(--line-2);
+}
+
+.cv-bullets {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.cv-bullets li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.cv-bullets li::marker {
+  color: var(--faint);
+}
+
+/* ---- skills: proficiency bands ---- */
+
+.cv-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.cv-skillband {
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.cv-skillband__head {
+  margin-bottom: 16px;
+}
+.cv-skillband__head h3 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  color: var(--text-bright);
+  font-weight: 700;
+}
+.cv-skillband__head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cv-skillband__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.cv-skillband__items li {
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-bright);
+}
+
+/* ---- education + certifications ---- */
+
+.cv-section--split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 44px;
+}
+
+.cv-edu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.cv-edu__item h3 {
+  margin: 0 0 3px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+.cv-edu__school {
+  margin: 0 0 4px;
+  font-size: 14px;
+  color: var(--accent);
+}
+.cv-edu__meta {
+  margin: 0 0 10px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.cv-edu__detail {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.62;
+  color: var(--muted);
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 900px) {
+  .cv-hero__inner {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .cv-hero__photo {
+    width: 100%;
+    height: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cv-hero {
+    padding-top: 36px;
+  }
+  .cv-hero__factlabel {
+    flex-basis: 100%;
+  }
+  .cv-hero__actions .page-cta {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

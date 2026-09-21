@@ -201,6 +201,19 @@ button {
   border-radius: 3px;
 }
 
+/* "Back to CV" is the escape hatch out of the IDE metaphor, so it reads as a
+   button rather than a shortcut hint. */
+.kbd-btn--back {
+  margin-left: 0;
+  margin-right: 6px;
+  padding: 0 11px;
+  color: var(--text);
+  font-size: 11.5px;
+}
+.kbd-btn--back:hover {
+  background: var(--panel-2);
+}
+
 /* ---- activity bar ---- */
 
 .body {

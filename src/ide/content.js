@@ -6,8 +6,8 @@
  *  Every entry in FILES becomes a tab in the editor. The `code` string is the
  *  literal text shown, syntax-highlighted. Change it and the site changes.
  *
- *  Content sourced from Faran's CV. Phone number deliberately omitted from the
- *  public site — add it to CONTACT if you want it shown.
+ *  Content sourced from Faran's CV. Phone number deliberately kept off the
+ *  public site — add it to IDENTITY if you want it shown.
  */
 
 /* ---------------------------------------------------------------------------
@@ -21,14 +21,82 @@ export const IDENTITY = {
   role: 'Full Stack Developer',
   location: 'London, United Kingdom',
   email: 'muhammadfaran01.mfs@gmail.com',
+  summary:
+    'Full Stack Developer with expertise across frontend, backend, database management ' +
+    'and deployment. I build and ship enterprise-grade applications, and I own problems ' +
+    'end to end — schema, API, interface and deployment.',
   links: [
-    { label: 'github', url: 'https://github.com/Faran71' },
+    { label: 'GitHub', url: 'https://github.com/Faran71', icon: 'github' },
     {
-      label: 'linkedin',
+      label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/muhammad-faran-sarwar-3747651b1/',
+      icon: 'linkedin',
     },
   ],
 };
+
+/* ---------------------------------------------------------------------------
+ * Structured content for the CV / recruiter view.
+ *
+ * Deliberately written in plain language — no jargon, no terminal metaphors.
+ * The IDE view renders the `code` strings below instead; keep the two roughly
+ * in step when you change something.
+ * ------------------------------------------------------------------------ */
+
+export const BIO = {
+  headline: 'Full Stack Developer building enterprise-grade applications.',
+  paragraphs: [
+    'I trained as an astrophysicist at the University of Cambridge, modelling particle ' +
+      'dynamics and collision behaviour in systems such as the Beta Pictoris debris disk. ' +
+      'That work was computational — Python, C++, messy data, and results you cannot ' +
+      'eyeball. You build the model, run it, and trust the numbers.',
+    'I moved into software engineering and brought that approach with me. I have since ' +
+      'built an AI voice-driven reporting application from scratch, a data analytics ' +
+      'platform for capability assessments, and contributed to an enterprise project ' +
+      'assurance platform deployed on AWS.',
+  ],
+};
+
+export const SKILL_BANDS = [
+  {
+    band: 'Proficient',
+    note: 'What I ship production work in',
+    items: [
+      'TypeScript',
+      'JavaScript',
+      'React',
+      'Angular',
+      'Svelte',
+      'NestJS',
+      'FastAPI',
+      'Express.js',
+      'Ruby on Rails',
+      'PostgreSQL',
+      'MongoDB',
+      'AWS',
+    ],
+  },
+  {
+    band: 'Intermediate',
+    note: 'What I reach for confidently',
+    items: ['Python', 'Java', 'HTML', 'CSS', 'MATLAB'],
+  },
+];
+
+export const CERTIFICATIONS = [
+  {
+    name: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services',
+    date: 'Feb 2024',
+    detail: 'Core AWS services, cloud architecture principles and cost optimisation.',
+  },
+  {
+    name: 'TOGAF Enterprise Architecture Foundation & Practitioner',
+    issuer: 'The Open Group',
+    date: 'Jan 2025',
+    detail: 'The Open Group Architecture Framework, foundation and advanced levels.',
+  },
+];
 
 /* ---------------------------------------------------------------------------
  * The stack — the headline of the site.
@@ -353,7 +421,8 @@ export const FILES = [
 
 export const STATS = [
   { value: '2+', label: 'years shipping' },
-  { value: '20', label: 'technologies' },
-  { value: '4', label: 'production platforms' },
-  { value: '2', label: 'cloud certifications' },
+  { value: '20+', label: 'technologies' },
+  { value: '2', label: 'production platforms' },
+  { value: '1', label: 'cloud certification' },
+  { value: '1', label: 'enterprise architecture certification' },
 ];
