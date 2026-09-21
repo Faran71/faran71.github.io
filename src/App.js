@@ -1,11 +1,6 @@
-// import logo from './logo.svg';
 import './App.css';
-import Main from './components/Main/Main';
+import Ide from './ide/Ide';
 
-function App() {
-  return (
-      <Main />
-  );
+export default function App() {
+  return <Ide />;
 }
-
-export default App;

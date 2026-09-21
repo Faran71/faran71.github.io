@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# faran71.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio for **Muhammad Faran Sarwar** — Full Stack Developer.
 
-## Available Scripts
+The site is built as a fake code editor: a file tree, tabs, a syntax-highlighted
+source pane, and a genuinely working terminal. The point is that the medium is
+the claim — instead of *saying* "I write software", the page *is* software you
+can type into.
 
-In the project directory, you can run:
+Live at [faran71.github.io](https://faran71.github.io).
 
-### `npm start`
+## Running it
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+npm start          # dev server on http://localhost:3000
+npm test           # jest + testing-library, 6 tests
+npm run build      # production bundle into build/
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Deployment is via `gh-pages`:
 
-### `npm test`
+```bash
+npm run deploy     # builds, then pushes build/ to the gh-pages branch
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Editing the content
 
-### `npm run build`
+**Everything you would want to change lives in one file:**
+[`src/ide/content.js`](src/ide/content.js).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Export | What it drives |
+| --- | --- |
+| `IDENTITY` | Name, role, location, email, GitHub/LinkedIn links |
+| `STACK` | The stack grid — grouped, with per-technology proficiency |
+| `FILES` | The editor tabs. Each `code` string is the literal text displayed |
+| `STATS` | The four numbers under the hero |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The `code` strings are real source text, not templates — they are tokenised and
+highlighted at runtime, so you can edit them like any other code and the colours
+follow automatically.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To add a technology, add an entry to `STACK` and make sure its `icon` key exists
+in [`src/ide/skills.js`](src/ide/skills.js).
 
-### `npm run eject`
+## How it is put together
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+  index.js              entry point
+  App.js                renders <Ide />
+  index.css             base reset
+  App.css               (kept, intentionally near-empty)
+  ide/
+    Ide.js              shell: titlebar, activity bar, file tree, tabs, status bar
+    Hero.js             name, typewriter, CTAs, stats
+    Stack.js            the stack grid with animated proficiency bars
+    CodeView.js         renders highlighted source with a line-number gutter
+    Terminal.js         the interactive terminal
+    CommandPalette.js   ⌘K palette (files, commands, technologies)
+    syntax.js           dependency-free tokeniser
+    commands.js         terminal command definitions
+    content.js          ← all content lives here
+    skills.js           brand icon registry + colour handling
+    hooks.js            useTypewriter, useInView, useMediaQuery
+    ide.css             the theme
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Notable details
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **No syntax-highlighting dependency.** `syntax.js` compiles the language rules
+  into one master regex with a capture group per token type, then reads off which
+  group matched. That matters for rules that rely on lookahead — `key:` for
+  object properties, `call(` for functions — because re-testing a token in
+  isolation loses the character that justified the match. It also returns
+  `[class, text]` tuples rather than HTML, so there is no
+  `dangerouslySetInnerHTML` anywhere.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **The terminal is real.** `commands.js` defines the command set; the terminal
+  echoes input, keeps history (`↑`/`↓`), autocompletes on `Tab`, and `Ctrl+L`
+  clears. Commands like `open <file>` and `projects` drive the editor panes.
 
-## Learn More
+- **Proficiency bars fail open.** `useInView` starts visible and only flips to
+  hidden if the element is genuinely below the fold, so the bars and their
+  numbers always agree even if `IntersectionObserver` never fires.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Brand icons stay legible.** `dimColor()` blends a brand hue toward the card
+  background, then raises HSL *lightness* (holding hue and saturation) until it
+  clears a luminance floor. Straight blending turned Angular red and Rails red
+  into indistinguishable grey, and lifting toward white desaturated them into
+  pastel mush.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Accessibility
 
-### Code Splitting
+- The terminal exposes `role="log"` with `aria-live="polite"`, so output is
+  announced; its input is labelled and keyboard-navigable.
+- `prefers-reduced-motion` disables the typewriter and all animation.
+- Visible focus rings, and a `<noscript>` block carrying the full content for
+  anyone without JavaScript.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Testing
 
-### Analyzing the Bundle Size
+`src/App.test.js` covers the things most likely to break silently: the hero
+renders the name, all twenty technologies appear, the terminal executes a real
+command and prints output, unknown commands fail loudly, `stack` prints its bar
+chart, and `open` actually switches the active tab.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`src/setupTests.js` stubs `matchMedia` and `IntersectionObserver`, which jsdom
+does not implement.
