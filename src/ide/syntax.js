@@ -6,7 +6,7 @@
  *
  * How it works: every pattern is one alternative of a single master regex,
  * wrapped in its own capture group. Whichever group is non-null tells us which
- * pattern matched — we never re-test a token in isolation. That matters for
+ * pattern matched - we never re-test a token in isolation. That matters for
  * patterns using lookahead (`foo:` for object keys, `foo(` for calls), because
  * a token string alone no longer carries the character that justified the match.
  */

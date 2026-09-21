@@ -7,7 +7,7 @@ import { useTypewriter } from './hooks';
 export default function Hero({ onRunCommand }) {
   const [copied, setCopied] = useState(false);
 
-  // The stack line leads on purpose — it is the first thing a visitor reads
+  // The stack line leads on purpose - it is the first thing a visitor reads
   // after the name, and breadth is the differentiator here.
   const phrases = useMemo(
     () => [

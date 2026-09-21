@@ -16,14 +16,14 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 /**
  * What I actually do, in the order I normally touch it.
  *
- * Kept deliberately short — this is the scannable version of the CV's
+ * Kept deliberately short - this is the scannable version of the CV's
  * experience section, not a duplicate of it.
  */
 const WHAT_I_DO = [
   {
     title: 'Frontend',
     body:
-      'Interfaces in React, Angular and Svelte. I care about the parts users actually feel — ' +
+      'Interfaces in React, Angular and Svelte. I care about the parts users actually feel - ' +
       'load time, clear states, and layouts that do not fall apart on a phone.',
     stack: ['React', 'Angular', 'Svelte', 'TypeScript'],
   },
@@ -44,7 +44,7 @@ const WHAT_I_DO = [
   {
     title: 'Cloud & AI integration',
     body:
-      'Deployment on AWS, and wiring AI into real products — AWS Bedrock for generation, ' +
+      'Deployment on AWS, and wiring AI into real products - AWS Bedrock for generation, ' +
       'Twilio for voice, Deepgram for transcription.',
     stack: ['AWS', 'Bedrock', 'Twilio', 'Deepgram'],
   },
@@ -115,7 +115,7 @@ export default function Profile({ onNavigate, theme }) {
             </div>
 
             <p className="pf-hero__hint">
-              For the full breakdown — roles, dates and certifications — read the{' '}
+              For the full breakdown - roles, dates and certifications - read the{' '}
               <button type="button" className="page-linkish" onClick={() => onNavigate('cv')}>
                 CV
               </button>
@@ -198,7 +198,7 @@ export default function Profile({ onNavigate, theme }) {
         <div>
           <h2 className="pf-cta-strip__title">Want the formal version?</h2>
           <p className="pf-cta-strip__body">
-            Roles with dates, education and certifications — everything a hiring process
+            Roles with dates, education and certifications - everything a hiring process
             usually asks for.
           </p>
         </div>

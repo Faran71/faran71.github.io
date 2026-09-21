@@ -1,6 +1,6 @@
 # faran71.github.io
 
-Personal site for **Muhammad Faran Sarwar** — Full Stack Developer.
+Personal site for **Muhammad Faran Sarwar** - Full Stack Developer.
 
 Live at [faran71.github.io](https://faran71.github.io).
 
@@ -10,14 +10,14 @@ The site has three front doors, because it has three jobs to do:
 
 | View | Hash | Default? | For |
 | --- | --- | --- | --- |
-| **Profile** | `#profile` | ✅ yes | The main landing page. Personal and scannable — who you are, what you build, selected work, skills, contact. |
+| **Profile** | `#profile` | ✅ yes | The main landing page. Personal and scannable - who you are, what you build, selected work, skills, contact. |
 | **CV** | `#cv` | no | The formal hiring document. Roles with dates, education, certifications. |
 | **Code** | `#ide` | no | The site rendered as a code editor, with a working terminal. For engineers. |
 
 The split is deliberate:
 
 - **The Profile page carries no education or dates.** It is the friendly front
-  door for anyone arriving cold — a recruiter skimming, another engineer
+  door for anyone arriving cold - a recruiter skimming, another engineer
   following a link, someone who found you through a message. It answers "what
   does this person do and can they do it well?"
 - **The CV page is the one you send into a hiring process.** It has exactly the
@@ -36,8 +36,8 @@ Resolution order on load, then:
 
 1. **An explicit hash wins.** `…/#cv` opens the CV, `…/#ide` opens the editor.
    Shared links therefore always open what they say.
-2. **Otherwise you get Profile.** Always. A plain visit to the domain — no hash,
-   any browser, any history — lands on the Profile page.
+2. **Otherwise you get Profile.** Always. A plain visit to the domain - no hash,
+   any browser, any history - lands on the Profile page.
 
 The current view is written into the URL hash as you navigate, so every view
 stays linkable and the browser Back button works.
@@ -54,19 +54,19 @@ Four palette colours drive everything:
 
 | Token name | Hex | Role |
 | --- | --- | --- |
-| sand | `#bbab9b` | Warm neutral — body text on dark |
-| brown | `#8b6f47` | Mid brown — panels, borders, link text on light |
-| gold | `#d4ac6e` | Highlight — accents, primary button fill |
-| dark | `#4f3222` | Deep brown — borders, dark surfaces, text on light |
+| sand | `#bbab9b` | Warm neutral - body text on dark |
+| brown | `#8b6f47` | Mid brown - panels, borders, link text on light |
+| gold | `#d4ac6e` | Highlight - accents, primary button fill |
+| dark | `#4f3222` | Deep brown - borders, dark surfaces, text on light |
 
 Everything else is a tonal variation of those four. There are **two themes**,
 and all colour lives in one file: [`src/theme/theme.css`](src/theme/theme.css).
 
 ### How the theme is picked
 
-1. An explicit choice — `:root[data-theme="light" | "dark"]`, set on `<html>`
+1. An explicit choice - `:root[data-theme="light" | "dark"]`, set on `<html>`
 2. Otherwise the **browser / OS preference**, via `@media (prefers-color-scheme)`
-   — scoped to `:root:not([data-theme])` so it can never override (1)
+   - scoped to `:root:not([data-theme])` so it can never override (1)
 3. Otherwise dark
 
 The toggle sits in the header of every view and has three options: **System**
@@ -74,7 +74,7 @@ The toggle sits in the header of every view and has three options: **System**
 *absence* of an attribute, so the media query keeps following the OS live.
 
 A tiny inline script in `public/index.html` applies a saved `light`/`dark`
-choice during `<head>` parsing, before anything paints — so pinning a theme
+choice during `<head>` parsing, before anything paints - so pinning a theme
 never flashes the other one.
 
 ### Two rules that keep the palette honest
@@ -110,15 +110,15 @@ npm run deploy     # builds, then pushes build/ to the gh-pages branch
 ### The downloadable CV
 
 `public/Faran_Sarwar_CV.pdf` is the file recruiters download. It is a static
-asset, so replacing it is just a matter of overwriting that file — the buttons
+asset, so replacing it is just a matter of overwriting that file - the buttons
 pick it up with no code change.
 
 Both the Profile and CV pages offer it two ways, via `CvActions` in
 `src/shared/Page.js`:
 
-- **Download CV** — `download="Muhammad-Faran-Sarwar-CV.pdf"`, so it lands in the
+- **Download CV** - `download="Muhammad-Faran-Sarwar-CV.pdf"`, so it lands in the
   downloads folder with a sensible name rather than `Faran_Sarwar_CV.pdf`
-- **View PDF** — opens in a new tab for anyone who would rather read it first
+- **View PDF** - opens in a new tab for anyone who would rather read it first
 
 To point at a different filename, change `CV_FILE` at the top of
 `src/shared/Page.js`.
@@ -139,7 +139,7 @@ Content is split by shape, not by page:
 
 | Export | Used by |
 | --- | --- |
-| `IDENTITY` | All three views — name, role, location, email, links |
+| `IDENTITY` | All three views - name, role, location, email, links |
 | `BIO` | Profile and CV "about" sections |
 | `STACK` | The proficiency bars on Profile, CV and the Code view |
 | `SKILL_BANDS` | The "Proficient" / "Intermediate" lists on the CV |
@@ -150,7 +150,7 @@ Content is split by shape, not by page:
 
 > **Note on duplication.** The Code view's `code` strings are hand-written to
 > look like real source, so they are not generated from the structured data.
-> That is a deliberate trade — it keeps the code view authentic. Keep the two
+> That is a deliberate trade - it keeps the code view authentic. Keep the two
 > roughly in step when you change a fact.
 
 To add a technology, add an entry to `STACK` and make sure its `icon` key exists
@@ -195,15 +195,15 @@ src/
 
 All three views sit on the same CSS custom properties (`src/theme/theme.css`),
 so they share a palette and both themes without sharing a layout. Profile and CV are built from the same shared
-components in `src/shared/Page.js` — that is why changing, say, the contact
+components in `src/shared/Page.js` - that is why changing, say, the contact
 cards updates both at once.
 
 ### Notable details
 
 - **No syntax-highlighting dependency.** `syntax.js` compiles the language rules
   into one master regex with a capture group per token type, then reads off which
-  group matched. That matters for rules that rely on lookahead — `key:` for
-  object properties, `call(` for functions — because re-testing a token in
+  group matched. That matters for rules that rely on lookahead - `key:` for
+  object properties, `call(` for functions - because re-testing a token in
   isolation loses the character that justified the match. It also returns
   `[class, text]` tuples rather than HTML, so there is no
   `dangerouslySetInnerHTML` anywhere.
@@ -246,11 +246,11 @@ render it in `src/shared/Page.js`.
 `src/App.test.js` (22 tests) covers what breaks silently:
 
 - **A plain visit always lands on Profile**, even with stale view state in
-  `localStorage` — the regression guard
+  `localStorage` - the regression guard
 - The app never writes the current view to `localStorage`
 - An explicit `#cv` / `#ide` hash still wins over the default
 - Opens on **Profile**, not CV or the IDE
-- **Profile has no education or certifications** — asserted on the
+- **Profile has no education or certifications** - asserted on the
   education-specific strings, since Cambridge is legitimately named in the bio
 - Contact details are present on both reading views, and **no phone number**
   appears anywhere

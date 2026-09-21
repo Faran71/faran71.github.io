@@ -99,7 +99,7 @@ export default function Ide({ onShowProfile, theme }) {
         </span>
 
         <span className="titlebar__title">
-          {IDENTITY.handle} — portfolio — {activeFile.name}
+          {IDENTITY.handle} - portfolio - {activeFile.name}
         </span>
 
         <span className="titlebar__spacer" />
@@ -290,7 +290,7 @@ export default function Ide({ onShowProfile, theme }) {
             <Stack />
 
             <div className="section__sub" style={{ padding: '0 22px 40px' }}>
-              <span className="section__num">02</span> — Projects, experience and contact live in
+              <span className="section__num">02</span> - Projects, experience and contact live in
               the file tree. Press <kbd className="term-hint">⌘K</kbd> to jump anywhere, or run{' '}
               <button
                 type="button"

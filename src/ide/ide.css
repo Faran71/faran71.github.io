@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IDE theme — editor chrome only. All colour lives in src/theme/theme.css.
+   IDE theme - editor chrome only. All colour lives in src/theme/theme.css.
    ========================================================================== */
 
 
@@ -1059,7 +1059,7 @@ button {
 }
 
 /* ==========================================================================
-   Responsive — the IDE shell is desktop-native; phones get a simpler read.
+   Responsive - the IDE shell is desktop-native; phones get a simpler read.
    ========================================================================== */
 
 @media (max-width: 900px) {
@@ -1133,7 +1133,7 @@ button {
     display: none;
   }
   .kbd-btn--back {
-    /* Icon only — "Back to profile" would not fit. */
+    /* Icon only - "Back to profile" would not fit. */
     font-size: 0;
     padding: 0 7px;
   }

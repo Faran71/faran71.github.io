@@ -11,7 +11,7 @@ function Skill({ item }) {
       ref={ref}
       className={`skill${inView ? ' is-visible' : ''}`}
       style={{ '--skill-color': item.color, '--skill-level': `${item.level}%` }}
-      title={`${item.name} — ${item.level}%`}
+      title={`${item.name} - ${item.level}%`}
     >
       <span className="skill__icon" style={{ color: dimColor(item.color) }}>
         <Icon aria-hidden="true" />
@@ -44,7 +44,7 @@ export default function Stack() {
       {STACK.map((group) => (
         <div className="stack__group" key={group.group}>
           <div className="stack__group-label">
-            {group.group} — {group.blurb}
+            {group.group} - {group.blurb}
           </div>
           <div className="stack__grid">
             {group.items.map((item) => (

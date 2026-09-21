@@ -9,16 +9,16 @@ import { useTheme } from './theme/ThemeToggle';
 /**
  * Three views of the same person.
  *
- *  - `profile` — the main landing page, and ALWAYS what you get on a plain
+ *  - `profile` - the main landing page, and ALWAYS what you get on a plain
  *    visit to the domain. Personal and scannable, for anyone arriving cold:
  *    recruiters, other engineers, a link from a message. Deliberately has no
- *    education or dates — the CV carries those.
- *  - `cv` — the formal CV for a hiring process: roles with dates, education,
+ *    education or dates - the CV carries those.
+ *  - `cv` - the formal CV for a hiring process: roles with dates, education,
  *    certifications.
- *  - `ide` — the site rendered as a code editor, for engineers.
+ *  - `ide` - the site rendered as a code editor, for engineers.
  *
  * Resolution order on load:
- *   1. an explicit `#hash` (so `…/#cv` always opens the CV — shared links work)
+ *   1. an explicit `#hash` (so `…/#cv` always opens the CV - shared links work)
  *   2. otherwise the Profile page
  *
  * The last view is deliberately NOT remembered in localStorage. Doing that made

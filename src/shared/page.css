@@ -17,7 +17,7 @@
 
 /*
  * Anchor colour follows the surrounding text by default. Components that set
- * their own colour (buttons, cards-looking-like-links) are excluded — a blanket
+ * their own colour (buttons, cards-looking-like-links) are excluded - a blanket
  * `color: inherit` has the same specificity as a component rule and would
  * silently win on source order.
  */

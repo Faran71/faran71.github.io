@@ -15,7 +15,7 @@ import { getSkillIcon } from '../ide/skills';
 import ThemeToggle from '../theme/ThemeToggle';
 import './page.css';
 
-/** Where the downloadable CV lives — a file in public/. */
+/** Where the downloadable CV lives - a file in public/. */
 export const CV_FILE = '/Faran_Sarwar_CV.pdf';
 
 /**
@@ -338,7 +338,7 @@ export function BackToTop() {
 }
 
 /* ==========================================================================
-   Shared page wrapper — header, main, footer, scroll reset
+   Shared page wrapper - header, main, footer, scroll reset
    ========================================================================== */
 
 export function PageShell({

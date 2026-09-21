@@ -21,7 +21,7 @@ function introLines() {
       text: 'Astrophysics at Cambridge, now building production software end to end.',
     },
     { kind: 'dim', text: '' },
-    { kind: 'out', text: 'This terminal is real — type a command and it runs.' },
+    { kind: 'out', text: 'This terminal is real - type a command and it runs.' },
     { kind: 'dim', text: 'Try `stack` for the full picture, or `help` for everything.' },
     { kind: 'dim', text: '' },
   ];
@@ -148,7 +148,7 @@ export default function Terminal({
     }
   };
 
-  // Inline autocomplete hint — the greyed-out remainder of the command.
+  // Inline autocomplete hint - the greyed-out remainder of the command.
   const onChange = (e) => {
     const next = e.target.value;
     setValue(next);

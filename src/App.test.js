@@ -51,7 +51,7 @@ test('an explicit hash still wins over the default', () => {
 });
 
 /* ==========================================================================
-   Profile — the main page
+   Profile - the main page
    ========================================================================== */
 
 test('opens on the Profile page, not the CV or the IDE', () => {

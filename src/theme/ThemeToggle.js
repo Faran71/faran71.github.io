@@ -9,7 +9,7 @@ import './theme.css';
  * choice is written to <html data-theme> and persisted; `system` is stored as
  * the absence of an attribute so the CSS media query can take over.
  *
- * localStorage is right here — unlike the view switcher, a remembered theme is
+ * localStorage is right here - unlike the view switcher, a remembered theme is
  * a preference the visitor chose, not a side effect of which page they clicked.
  */
 

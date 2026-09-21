@@ -1,13 +1,13 @@
 /**
  * ============================================================================
- *  EDIT ME — this is the single source of truth for everything on the site.
+ *  EDIT ME - this is the single source of truth for everything on the site.
  * ============================================================================
  *
  *  Every entry in FILES becomes a tab in the editor. The `code` string is the
  *  literal text shown, syntax-highlighted. Change it and the site changes.
  *
  *  Content sourced from Faran's CV. Phone number deliberately kept off the
- *  public site — add it to IDENTITY if you want it shown.
+ *  public site - add it to IDENTITY if you want it shown.
  */
 
 /* ---------------------------------------------------------------------------
@@ -24,7 +24,7 @@ export const IDENTITY = {
   summary:
     'Full Stack Developer with expertise across frontend, backend, database management ' +
     'and deployment. I build and ship enterprise-grade applications, and I own problems ' +
-    'end to end — schema, API, interface and deployment.',
+    'end to end - schema, API, interface and deployment.',
   links: [
     { label: 'GitHub', url: 'https://github.com/Faran71', icon: 'github' },
     {
@@ -38,7 +38,7 @@ export const IDENTITY = {
 /* ---------------------------------------------------------------------------
  * Structured content for the CV / recruiter view.
  *
- * Deliberately written in plain language — no jargon, no terminal metaphors.
+ * Deliberately written in plain language - no jargon, no terminal metaphors.
  * The IDE view renders the `code` strings below instead; keep the two roughly
  * in step when you change something.
  * ------------------------------------------------------------------------ */
@@ -48,7 +48,7 @@ export const BIO = {
   paragraphs: [
     'I trained as an astrophysicist at the University of Cambridge, modelling particle ' +
       'dynamics and collision behaviour in systems such as the Beta Pictoris debris disk. ' +
-      'That work was computational — Python, C++, messy data, and results you cannot ' +
+      'That work was computational - Python, C++, messy data, and results you cannot ' +
       'eyeball. You build the model, run it, and trust the numbers.',
     'I moved into software engineering and brought that approach with me. I have since ' +
       'built an AI voice-driven reporting application from scratch, a data analytics ' +
@@ -99,7 +99,7 @@ export const CERTIFICATIONS = [
 ];
 
 /* ---------------------------------------------------------------------------
- * The stack — the headline of the site.
+ * The stack - the headline of the site.
  *
  * `icon` keys must exist in SKILL_ICONS (src/ide/skills.js).
  * `level` drives the proficiency bar. Levels follow the CV's own split:
@@ -157,7 +157,7 @@ export const STACK = [
  * Editor tabs
  * ------------------------------------------------------------------------ */
 
-const PROFILE = `// profile.ts — the short version of me
+const PROFILE = `// profile.ts - the short version of me
 import type { Engineer } from './types';
 
 export const me: Engineer = {
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     name: 'Lumina',
     company: 'Firewood',
     summary:
-      'A data analytics platform for capability assessments — turns raw survey ' +
+      'A data analytics platform for capability assessments - turns raw survey ' +
       'data into interactive graphs that non-technical users can explore.',
     stack: ['TypeScript', 'Express.js', 'React', 'PostgreSQL'],
     role: 'Built the analytics pipeline and the interface',
@@ -276,7 +276,7 @@ export const projects: Project[] = [
     name: 'Jaid Platform',
     company: 'Jaid',
     summary:
-      'A production application plus several interconnected services — ' +
+      'A production application plus several interconnected services - ' +
       'ongoing bug resolution, incremental features, and cross-service stability.',
     stack: ['NestJS', 'Node.js', 'MongoDB', 'Angular', 'Svelte'],
     role: 'Full stack developer',
@@ -291,11 +291,11 @@ export const timeline: Role[] = [
     title: 'Full Stack Developer',
     company: 'Jaid',
     location: 'London / Hybrid',
-    period: 'Dec 2025 — Present',
+    period: 'Dec 2025 - Present',
     stack: ['NestJS', 'Node.js', 'MongoDB', 'Angular', 'Svelte'],
     highlights: [
       'Maintain and extend a production application built with NestJS, Node.js, MongoDB, Angular and Svelte.',
-      'Work across several smaller interconnected applications in the wider system — resolving bugs, shipping incremental features, keeping services stable.',
+      'Work across several smaller interconnected applications in the wider system - resolving bugs, shipping incremental features, keeping services stable.',
       'Collaborate closely with the team to prioritise and deliver maintenance work without disrupting end users.',
     ],
   },
@@ -303,11 +303,11 @@ export const timeline: Role[] = [
     title: 'Full Stack Developer',
     company: 'Firewood',
     location: 'London / Hybrid',
-    period: 'Jun 2024 — Nov 2025',
+    period: 'Jun 2024 - Nov 2025',
     stack: ['FastAPI', 'React', 'Rails', 'PostgreSQL', 'AWS'],
     highlights: [
       'Contributed to FAST, an enterprise-grade project assurance platform with a Ruby on Rails backend, deployed securely on AWS.',
-      'Designed and developed Resonate from scratch — an AI-driven voice reporting app using FastAPI, React and PostgreSQL, with Twilio for voice automation and Deepgram for transcription.',
+      'Designed and developed Resonate from scratch - an AI-driven voice reporting app using FastAPI, React and PostgreSQL, with Twilio for voice automation and Deepgram for transcription.',
       'Built Lumina, a capability-assessment analytics platform turning survey data into interactive graphs, on an Express.js / React / PostgreSQL stack.',
       'Managed end-to-end deployment pipelines and integrated AWS Bedrock for AI-driven functionality.',
     ],
@@ -318,17 +318,17 @@ export const education: Education[] = [
   {
     school: 'University of Cambridge',
     qualification: 'MSci / BA Astrophysics',
-    period: 'Sep 2019 — Jun 2023',
+    period: 'Sep 2019 - Jun 2023',
     grade: 'Upper Second-Class',
     detail:
-      'Computational astrophysics research in Python and C++ — simulating ' +
+      'Computational astrophysics research in Python and C++ - simulating ' +
       'particle dynamics and collision behaviour in systems such as the ' +
       'Beta Pictoris debris disk.',
   },
   {
     school: 'Newham Collegiate Sixth Form Centre',
     qualification: 'A Levels',
-    period: 'Sep 2017 — Jul 2019',
+    period: 'Sep 2017 - Jul 2019',
     grade: 'Mathematics (A*), Further Mathematics (A*), Physics (A*), Chemistry (A*)',
     detail: 'AEA Mathematics: Distinction',
   },
@@ -344,14 +344,14 @@ export const about = {
   story: \`I trained as an astrophysicist at Cambridge, modelling particle
 dynamics and collision behaviour in systems like the Beta Pictoris debris
 disk. That work was computational: Python and C++, messy data, and results
-you cannot eyeball — you have to build the model, run it, and trust the
+you cannot eyeball - you have to build the model, run it, and trust the
 numbers.
 
 I moved into software engineering and brought that with me. I care about
 systems that hold up under real data, and I like owning a problem end to
 end: schema, API, interface, deployment. Since then I have built
 enterprise-grade platforms, an AI voice-reporting application from
-scratch, and a data analytics product — mostly in TypeScript, Python and
+scratch, and a data analytics product - mostly in TypeScript, Python and
 Ruby, across React, Angular, Svelte, NestJS, FastAPI, Express and Rails.\`,
 
   values: [
@@ -403,7 +403,7 @@ I will tell you honestly whether I am the right person for it.
 `;
 
 /* ---------------------------------------------------------------------------
- * Tab registry — add/remove/reorder freely.
+ * Tab registry - add/remove/reorder freely.
  * ------------------------------------------------------------------------ */
 
 export const FILES = [

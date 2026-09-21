@@ -127,7 +127,7 @@ const luminance = (rgb) => {
 /**
  * Recolour a brand hue so it is identifiable but recessive on a dark surface.
  *
- * Blending toward the background alone is not enough — dark brands like
+ * Blending toward the background alone is not enough - dark brands like
  * Angular red (#dd0031) and Rails red (#cc0000) collapse into the card fill and
  * the grid reads as a row of grey blobs. Lifting toward white instead
  * desaturates them into pastel mush. So we blend, then raise HSL lightness
@@ -158,7 +158,7 @@ export function dimColor(hex, amount = 0.32, minLum = 0.123, bg = '#11141d') {
     const [h, s, l] = rgbToHsl(rgb);
     let lo = l;
     let hi = 1;
-    // Smallest lightness that clears the floor — bisection keeps this exact.
+    // Smallest lightness that clears the floor - bisection keeps this exact.
     for (let i = 0; i < 18; i += 1) {
       const mid = (lo + hi) / 2;
       if (luminance(hslToRgb([h, s, mid])) >= minLum) hi = mid;

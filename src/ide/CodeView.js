@@ -4,7 +4,7 @@ import { tokenizeLines } from './syntax';
 /**
  * Renders source with line numbers and syntax colouring.
  *
- * `litThrough` lets sibling components spotlight a line range — used by the
+ * `litThrough` lets sibling components spotlight a line range - used by the
  * command palette when you jump to a file.
  */
 export default function CodeView({ code, litThrough = -1 }) {

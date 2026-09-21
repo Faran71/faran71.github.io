@@ -3,7 +3,7 @@
  *
  * Each command gets the full context and returns either a plain string, an
  * array of strings, or a JSX node (for rich output like the stack bars).
- * `run` may also be used purely for its side effect — e.g. opening a tab.
+ * `run` may also be used purely for its side effect - e.g. opening a tab.
  */
 import { STACK, IDENTITY, FILES } from './content';
 
@@ -56,7 +56,7 @@ export const COMMANDS = {
   whoami: {
     desc: 'who I am',
     run: () => [
-      line(`${IDENTITY.name} — ${IDENTITY.role}`),
+      line(`${IDENTITY.name} - ${IDENTITY.role}`),
       line(`${IDENTITY.location} · @${IDENTITY.handle}`, 'dim'),
       line('', 'out'),
       line('MSci Astrophysics (Cambridge), now a full stack developer.', 'out'),
